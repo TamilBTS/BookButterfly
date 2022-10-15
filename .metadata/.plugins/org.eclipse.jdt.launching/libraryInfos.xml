@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<libraryInfos>
+<libraryInfo home="C:\Program Files\Java\jreNew" version="1.8.0_341">
+<bootpath>
+<entry path="C:\Program Files\Java\jreNew\lib\resources.jar"/>
+<entry path="C:\Program Files\Java\jreNew\lib\rt.jar"/>
+<entry path="C:\Program Files\Java\jreNew\lib\jsse.jar"/>
+<entry path="C:\Program Files\Java\jreNew\lib\jce.jar"/>
+<entry path="C:\Program Files\Java\jreNew\lib\charsets.jar"/>
+<entry path="C:\Program Files\Java\jreNew\lib\jfr.jar"/>
+<entry path="C:\Program Files\Java\jreNew\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="C:\Program Files\Java\jreNew\lib\ext"/>
+<entry path="C:\windows\Sun\Java\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="C:\Program Files\Java\jreNew\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+</libraryInfos>

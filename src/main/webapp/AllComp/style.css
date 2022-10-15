@@ -1,0 +1,12 @@
+.bg-custom{
+    background-color: #ea80fc;
+}
+
+.navbar .nav-item:hover .nav-link{
+    background-color: whitesmoke;
+    color: #4a148c;
+    border-radius: 18px;
+}
+.cart{
+color:#5B194E;	
+}
