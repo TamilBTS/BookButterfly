@@ -42,6 +42,8 @@ public class UserOrders extends HttpServlet {
 			String pincode = request.getParameter("pincode");
 			String paymentType = request.getParameter("payment");
 			String Total = request.getParameter("Total");
+			
+			
 
 			/*String regex = "^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{3}$";
 
@@ -92,6 +94,14 @@ public class UserOrders extends HttpServlet {
 					orderList.add(b);
 
 				}
+				if(paymentType.equals("Online")){
+					HttpSession s=request.getSession();
+					s.setAttribute("tp", Total);
+					s.setAttribute("uid", id);
+					s.setAttribute("orderList", orderList);
+					response.sendRedirect("onlinePayment.jsp");
+				}
+				else{
 				boolean f = dao1.saveOrder(orderList);
 
 				if (f) {
@@ -104,6 +114,7 @@ public class UserOrders extends HttpServlet {
 					session.setAttribute("failmsg", "Something went wrong..");
 					response.sendRedirect("cart.jsp");
 				}
+			}
 			//}
 
 		} catch (Exception e) {

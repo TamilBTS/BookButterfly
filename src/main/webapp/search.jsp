@@ -9,6 +9,8 @@
 <%@ page isELIgnored="false" %>
 <html>
 <head>
+	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>User:Search Page</title>
 <%@include file="AllComp/AllCSS.jsp"%>

@@ -14,7 +14,28 @@ public class User {
 	private String pincode;
 	private String securityQues;
 	private String answer;
+	private String cname;
+	private String cno;
+	private String cvv;
 	
+	public String getCname() {
+		return cname;
+	}
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+	public String getCno() {
+		return cno;
+	}
+	public void setCno(String cno) {
+		this.cno = cno;
+	}
+	public String getCvv() {
+		return cvv;
+	}
+	public void setCvv(String cvv) {
+		this.cvv = cvv;
+	}
 	public String getSecurityQues() {
 		return securityQues;
 	}

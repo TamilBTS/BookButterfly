@@ -32,5 +32,8 @@
 	<classpathentry kind="lib" path="C:/Users/arasi/Downloads/servlet-api.jar/servlet-api.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/arasi/Downloads/mysql-connector-java-8.0.30/mysql-connector-java-8.0.30/mysql-connector-java-8.0.30.jar"/>
 	<classpathentry kind="lib" path="C:/Users/arasi/Downloads/org.json.jar.zip"/>
+	<classpathentry kind="lib" path="C:/Users/arasi/Downloads/smtp-1.4.5.jar.zip"/>
+	<classpathentry kind="lib" path="C:/Users/arasi/Downloads/activation.jar.zip"/>
+	<classpathentry kind="lib" path="C:/Users/arasi/Downloads/mail.jar.zip"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

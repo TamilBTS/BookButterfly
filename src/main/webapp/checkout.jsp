@@ -3,6 +3,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Checkout page</title>
 <%@include file="AllComp/AllCSS.jsp"%>
@@ -116,9 +118,11 @@ html, body {
 									<select class="custom-select" name="payment" required>
 										<option value="">---Payment Mode---</option>
 										<option value="COD">Cash On Delivery</option>
+										<option value="Online">Credit/Debit Card</option>
 									</select>
 								</div>
 							</div>
+							
 							<br>
 
 							<center>
