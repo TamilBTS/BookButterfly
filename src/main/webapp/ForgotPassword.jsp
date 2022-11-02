@@ -76,8 +76,10 @@ html, body {
 					
 					<div class="text-center">
 						<button type="submit" class="btn btn-outline-dark">Submit</button>
+						<br>
 						
 					</div>
+					<!--  <br>&nbsp;&nbsp;<a href="SecurityKey.jsp">Try Another Way</a>-->
 					</form>
 					</div>
 				</div>

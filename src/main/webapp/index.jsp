@@ -5,36 +5,37 @@
 <%@page import="com.entity.BookDetails"%>
 <%@page import="java.util.*"%>
 <%@page import="com.entity.User"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page isELIgnored="false"%>
 <html>
 <head>
- <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"
+<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"
 	></script>-->
-	
-	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-	
-	
-	<script >
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
 
-				function addcart(){
-					
-					
-					var bookid = document.getElementById("bookId").value;
-					var userid = document.getElementById("userId").value;
-					
-					alert('MyCart?bid='+<%=session.getAttribute("BookID")%>+'&&uid='+userid);
-					    $.ajax({
-					      url: 'MyCart?bid='+<%=session.getAttribute("BookID")%>+'&uid='+userid,
-					      method     : 'GET'
-						 
-					    });
-					}
+<script>
+	function addcart() {
 
+		var bookid = document.getElementById("bookId").value;
+		var userid = document.getElementById("userId").value;
 
-				</script>
-	
+		alert('MyCart?bid=' +
+<%=session.getAttribute("BookID")%>
+	+ '&&uid='
+				+ userid);
+		$.ajax({
+			url : 'MyCart?bid=' +
+<%=session.getAttribute("BookID")%>
+	+ '&uid='
+					+ userid,
+			method : 'GET'
+
+		});
+	}
+</script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Book Butterfly</title>
 <%@include file="AllComp/AllCSS.jsp"%>
@@ -56,20 +57,21 @@ h5 {
 .crd-ho:hover {
 	background: #f9f2fa;
 }
-.cart:hover{
-   color:white;
+
+.cart:hover {
+	color: white;
 }
-html,body{
-margin:0px;
-padding:0px;
-overflow-x:hidden;
+
+html, body {
+	margin: 0px;
+	padding: 0px;
+	overflow-x: hidden;
 }
 
 .btn1 {
-	
 	color: #800D6D;
 	height: 40px;
-	border-color:#800D6D; 
+	border-color: #800D6D;
 }
 
 .btn1-ho:hover {
@@ -89,18 +91,18 @@ overflow-x:hidden;
 	<%
 		response.setHeader("Cache-Control", "no-cache,no-store,must-validate");
 	%>
-	
+
 
 	<%@include file="AllComp/navbar.jsp"%>
-	
-	
+
+
 	<div class="container-fluid back-img">
 		<h5 class="text-center">All Books</h5>
-<c:if test="${not empty failure}">
-					<h6 class="text-center text-danger">${failure}</h6>
-					<c:remove var="failure" scope="session"></c:remove>
-					</c:if>
-				<!--  	<c:if test="${not empty addcart}">
+		<c:if test="${not empty failure}">
+			<h6 class="text-center text-danger">${failure}</h6>
+			<c:remove var="failure" scope="session"></c:remove>
+		</c:if>
+		<!--  	<c:if test="${not empty addcart}">
 					<h6 class="text-center text-success ">${addcart}</h6>
 					<c:remove var="addcart" scope="session"></c:remove>
 					</c:if> -->
@@ -116,18 +118,20 @@ overflow-x:hidden;
 
 				<%
 					BookDaoImp dao = new BookDaoImp(DBConnect.getConnection());
-					List<BookDetails> list = dao.getNewBooks();%>
-					
+					List<BookDetails> list = dao.getNewBooks();
+				%>
 
-					
-					<% for (BookDetails b : list) {
-						int i=0;
+
+
+				<%
+					for (BookDetails b : list) {
+						int i = 0;
 
 						if (b.getBookCategory().equals("Old Book"))
 
 						{
 				%>
-				
+
 				<div class="col-md-4">
 
 					<div class="card mb-4 crd-ho">
@@ -145,10 +149,11 @@ overflow-x:hidden;
 							</p>
 							<a role="link"
 								class="btn btn-outline-secondary btn-block text-center"
-								aria-disabled="true"> <i class="fa-solid fa-bag-shopping"></i>&nbsp;Add To Bag
+								aria-disabled="true"> <i class="fa-solid fa-bag-shopping"></i>&nbsp;Add
+								To Bag
 							</a> <a href="view_books.jsp?bid=<%=b.getBookId()%>"
-								class="btn btn-outline btn1 btn1-ho btn-block text-center"> <i
-								class="fa-solid fa-book pr-2"></i>View
+								class="btn btn-outline btn1 btn1-ho btn-block text-center">
+								<i class="fa-solid fa-book pr-2"></i>View
 							</a>
 						</div>
 
@@ -175,11 +180,18 @@ overflow-x:hidden;
 							class="card-img-top img-fluid" />
 						<div class="card-body ">
 							<h5 class="card-title"><%=b.getBookName()%></h5>
-							<%if(b.getBookCategory().equals("Entertainment")) {%>
-							<span class="badge mb-2 badge-pill badge-dark"><%=b.getBookCategory()%></span><%} else{%>
+							<%
+								if (b.getBookCategory().equals("Entertainment")) {
+							%>
+							<span class="badge mb-2 badge-pill badge-dark"><%=b.getBookCategory()%></span>
+							<%
+								} else {
+							%>
 							<span class="badge mb-2 badge-pill badge-primary"><%=b.getBookCategory()%></span>
-							
-							<%} %>
+
+							<%
+								}
+							%>
 							<p class="card-text text-muted">
 								Author :<%=b.getAuthor()%>
 							</p>
@@ -189,18 +201,20 @@ overflow-x:hidden;
 							<%
 								if (u == null) {
 							%>
-							<a href="login.jsp" class="btn btn-outline-info btn-block text-center">
-								<i class="fa-solid fa-bag-shopping"></i>&nbsp;Add To Bag
+							<a href="login.jsp"
+								class="btn btn-outline-info btn-block text-center"> <i
+								class="fa-solid fa-bag-shopping"></i>&nbsp;Add To Bag
 							</a>
 
 							<%
 								} else {
-									int bookId=b.getBookId();
+											int bookId = b.getBookId();
 							%>
-							
-							
-							<a href="MyCart?bid=<%=b.getBookId() %>&&uid=<%=u.getId() %>" class="btn btn-outline-info btn-block text-center" >
-								<i class="fa-solid fa-bag-shopping"></i>&nbsp;Add To Bag
+
+
+							<a href="MyCart?bid=<%=b.getBookId()%>&&uid=<%=u.getId()%>"
+								class="btn btn-outline-info btn-block text-center"> <i
+								class="fa-solid fa-bag-shopping"></i>&nbsp;Add To Bag
 							</a>
 							<!-- <script type="text/javascript">
 							function func(){
@@ -212,8 +226,8 @@ overflow-x:hidden;
 								}
 							%>
 							<a href="view_books.jsp?bid=<%=b.getBookId()%>"
-								class="btn btn-outline btn1 btn1-ho btn-block text-center"> <i
-								class="fa-solid fa-book pr-2"></i>View
+								class="btn btn-outline btn1 btn1-ho btn-block text-center">
+								<i class="fa-solid fa-book pr-2"></i>View
 							</a>
 						</div>
 						<div class="card-footer">
@@ -232,8 +246,8 @@ overflow-x:hidden;
 
 
 				<%
-					i++;}
-					
+					i++;
+					}
 				%>
 
 

@@ -24,12 +24,12 @@
 	</c:if>
 	<h5 class="text-center">BOOKS</h5>
 
-	<c:if test="${not empty success }">
+	<!--<c:if test="${not empty success }">
 		<p class="text-center text-success">${success}
 			<c:remove var="success" scope="session" />
 		</p>
 
-	</c:if>
+	</c:if>-->
 	<c:if test="${not empty failure }">
 		<p class="text-center text-danger">${failure}
 			<c:remove var="failure" scope="session" />

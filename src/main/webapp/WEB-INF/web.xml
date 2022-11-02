@@ -142,6 +142,18 @@
   	<description></description>
   	<servlet-class>com.user.servlet.OnlineConfirmOrder</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>EmailForgot</servlet-name>
+  	<display-name>EmailForgot</display-name>
+  	<description></description>
+  	<servlet-class>com.user.servlet.EmailForgot</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>EmailChangePass</servlet-name>
+  	<display-name>EmailChangePass</display-name>
+  	<description></description>
+  	<servlet-class>com.user.servlet.EmailChangePass</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>RegisterServlet</servlet-name>
   	<url-pattern>/RegisterServlet</url-pattern>
@@ -233,5 +245,13 @@
   <servlet-mapping>
   	<servlet-name>OnlineConfirmOrder</servlet-name>
   	<url-pattern>/OnlineConfirmOrder</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>EmailForgot</servlet-name>
+  	<url-pattern>/EmailForgot</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>EmailChangePass</servlet-name>
+  	<url-pattern>/EmailChangePass</url-pattern>
   </servlet-mapping>
 </web-app>

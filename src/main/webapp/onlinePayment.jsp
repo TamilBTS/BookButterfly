@@ -23,12 +23,30 @@ html, body {
 		document.getElementById("otp").setAttribute('required', 'required');
 	}
 	function remove() {
+		if(document.payment.username.value==""){
+			alert("Please Enter Card name")
+			document.payment.username.focus();
+			return false;
+		}
+		else if(document.payment.cno.value==""){
+			alert("Please Enter Card Number")
+			document.payment.cno.focus();
+			return false;
+		}
+		else if(document.payment.cvv.value==""){
+			alert("Please Enter CVV")
+			document.payment.cvv.focus();
+			return false;
+		}
+		else{
 		alert("An OTP has sent to your Email...Please Check")
+		document.payment.otp.focus();
 		document.getElementById("otp").removeAttribute('required', 'required');
 		$.ajax({
 			url : 'GetOTP',
 			method : 'GET',
 		});
+		}
 	}
 </script>
 </head>
@@ -65,7 +83,7 @@ html, body {
 							<c:remove var="failure" scope="session" />
 						</c:if>
 						<br>
-						<form action="OnlineConfirmOrder" method="post">
+						<form action="OnlineConfirmOrder" method="post" name="payment">
 							<input type="hidden" name="id" value="${userobj.id }"> <input
 								type="hidden" name="Total" value="<%=TotalPrice%>">
 							<div class="row">
