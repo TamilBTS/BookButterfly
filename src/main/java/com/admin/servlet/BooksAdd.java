@@ -35,9 +35,9 @@ public class BooksAdd extends HttpServlet {
 			String status=request.getParameter("bstatus");
 			Part part=request.getPart("bimg");
 			String fileName= part.getSubmittedFileName();
+			int stock=Integer.parseInt(request.getParameter("stock"));
 			
-			
-			BookDetails b=new BookDetails(bookName,author,price,bookCatagory,status,fileName,"admin");
+			BookDetails b=new BookDetails(bookName,author,price,bookCatagory,status,fileName,stock,"admin");
 			
 			//System.out.print(b);
 			

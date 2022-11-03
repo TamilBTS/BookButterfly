@@ -18,10 +18,12 @@ public class OrderStatus extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id=Integer.parseInt(request.getParameter("oid"));
+		int bid=Integer.parseInt(request.getParameter("bid"));
+		int q=Integer.parseInt(request.getParameter("q"));
 		System.out.println(id);
 		BookOrdersDaoImp dao=new BookOrdersDaoImp(DBConnect.getConnection());
 		
-		boolean f=dao.updateStatus(id);
+		boolean f=dao.updateStatus(id,bid,q);
 		if(f){
 			System.out.println("success");
 			response.sendRedirect("admin/orders.jsp");

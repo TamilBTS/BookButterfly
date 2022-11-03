@@ -87,13 +87,13 @@
 					<td>
 						<div class="row">
 							<div class="col-4">
-								<a href="../OrderStatus?oid=<%=b.getId()%>"
+								<a href="../OrderStatus?oid=<%=b.getId()%>&&bid=<%=b.getBid()%>&&q=<%=b.getQuantity() %>"
 									class="btn btn-sm btn-primary" id="c1"
 									onClick="clickAndDisable(this)" style=""><i
 									class="fa-solid fa-check"></i></a>
 							</div>
 							<div class="col-4">
-								<a href="../OrderCancel?oid=<%=b.getId()%>"
+								<a href="../OrderCancel?oid=<%=b.getId()%>&&bid=<%=b.getBid()%>&&q=<%=b.getQuantity() %>"
 									class="btn btn-sm btn-danger" id="c1"
 									onClick="clickAndDisable(this)"><i
 									class="fa-solid fa-xmark"></i></a>

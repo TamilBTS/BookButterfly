@@ -24,7 +24,7 @@ public class BookDaoImp implements BookDao {
 		boolean f = false;
 
 		try {
-			String sql = "insert into book_details(bookName,author,price,bookCatagory,status,photo,userEmail) values(?,?,?,?,?,?,?)";
+			String sql = "insert into book_details(bookName,author,price,bookCatagory,status,photo,userEmail,stock) values(?,?,?,?,?,?,?,?)";
 			PreparedStatement pt = con.prepareStatement(sql);
 			pt.setString(1, b.getBookName());
 			pt.setString(2, b.getAuthor());
@@ -33,6 +33,7 @@ public class BookDaoImp implements BookDao {
 			pt.setString(5, b.getStatus());
 			pt.setString(6, b.getPhotoName());
 			pt.setString(7, b.getUserEmail());
+			pt.setInt(8, b.getStock());
 
 			int i = pt.executeUpdate();
 			if (i == 1) {
@@ -69,7 +70,7 @@ public class BookDaoImp implements BookDao {
 				b.setStatus(rs.getString(6));
 				b.setPhotoName(rs.getString(7));
 				b.setUserEmail(rs.getString(8));
-
+				b.setStock(rs.getInt(9));
 				list.add(b);
 			}
 

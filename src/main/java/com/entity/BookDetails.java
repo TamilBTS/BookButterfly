@@ -11,12 +11,19 @@ public class BookDetails {
 	private String status;
 	private String photoName;
 	private String userEmail;
+	private int stock;
+	public int getStock() {
+		return stock;
+	}
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
 	public BookDetails() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public BookDetails(String bookName, String author, String price, String bookCategory, String status,
-			String photoName, String userEmail) {
+			String photoName, int stock, String userEmail) {
 		super();
 		this.bookName = bookName;
 		this.author = author;
@@ -24,6 +31,7 @@ public class BookDetails {
 		this.bookCategory = bookCategory;
 		this.status = status;
 		this.photoName = photoName;
+		this.stock=stock;
 		this.userEmail = userEmail;
 	}
 	public int getBookId() {

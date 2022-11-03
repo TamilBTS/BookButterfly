@@ -18,10 +18,21 @@ public class UserOrderCancel extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		int id=Integer.parseInt(request.getParameter("oid"));
-		System.out.println(id);
+		int bid=Integer.parseInt(request.getParameter("bid"));
+		int q=Integer.parseInt(request.getParameter("q"));
+		String status=request.getParameter("status");
+		System.out.println("Status - "+status);
+		System.out.println("OrderID "+id+"BookID "+bid+"Quantity "+q);
 		BookOrdersDaoImp dao=new BookOrdersDaoImp(DBConnect.getConnection());
+		boolean f;
+		if("Accepted".equals(status)){
+			 
+			 f=dao.cancelOrder(id,bid,q);
+		}
+		else{
+			f=dao.admincancelOrder(id);
 		
-		boolean f=dao.cancelOrder(id);
+		}
 		if(f){
 			System.out.println("success");
 			response.sendRedirect("MyOrders.jsp");

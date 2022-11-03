@@ -86,7 +86,7 @@ overflow-x:hidden;
 							</div>
 							<div class="form-group">
 								<label for="exampleInputEmail1">Phone Number</label> <input
-									type="number" maxlength="10" class="form-control" id="exampleInputEmail1"
+									type="number" min="10" max="10" class="form-control" id="exampleInputEmail1" pattern="[0-9]*" inputmode="numeric"
 									aria-describedby="emailHelp" required="required" name="Uphno" >
 								
 							</div>

@@ -55,6 +55,11 @@
 										name="price" class="form-control" id="inputPassword4"
 										required="required">
 								</div>
+								<div class="form-group col-md-12">
+									<label for="inputPassword4">Stock</label> <input type="number"
+										name="stock" class="form-control" id="inputPassword4"
+										required="required">
+								</div>
 
 							</div>
 							<div class="form-group">

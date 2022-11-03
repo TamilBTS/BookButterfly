@@ -96,7 +96,7 @@ html, body {
 											class="fa-solid fa-xmark" aria-disabled="true"></i></a> <%
  											} else {
  										%> 
- 										<a href="UserOrderCancel?oid=<%=b.getId()%>"
+ 										<a href="UserOrderCancel?oid=<%=b.getId()%>&&bid=<%=b.getBid() %>&&q=<%=b.getQuantity() %>&&status=<%=b.getStatus() %>"
 										class="btn btn-sm btn-danger"><i class="fa-solid fa-xmark"></i></a>
 										<%
 											}

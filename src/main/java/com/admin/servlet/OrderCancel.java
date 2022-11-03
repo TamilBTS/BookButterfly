@@ -18,10 +18,12 @@ public class OrderCancel extends HttpServlet {
 		
 		
 		int id=Integer.parseInt(request.getParameter("oid"));
+		int bid=Integer.parseInt(request.getParameter("bid"));
+		int q=Integer.parseInt(request.getParameter("q"));
 		System.out.println(id);
 		BookOrdersDaoImp dao=new BookOrdersDaoImp(DBConnect.getConnection());
 		
-		boolean f=dao.cancelOrder(id);
+		boolean f=dao.admincancelOrder(id);
 		if(f){
 			System.out.println("success");
 			response.sendRedirect("admin/orders.jsp");

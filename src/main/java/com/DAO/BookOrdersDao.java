@@ -16,9 +16,11 @@ public interface BookOrdersDao {
 	
 	public List<BookOrders> getAllBooks();
 	
-	public boolean updateStatus(int id);
+	public boolean updateStatus(int id,int bid,int quantity);
 	
-	public boolean cancelOrder(int id);
+	public boolean cancelOrder(int id,int bid,int quantity);
+	
+	public boolean admincancelOrder(int id);
 	
 	public List<BookOrders> allBooks();
 	

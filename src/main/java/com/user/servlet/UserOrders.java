@@ -90,7 +90,7 @@ public class UserOrders extends HttpServlet {
 					b.setDate(dtf1.format(date));
 					b.setTime(dtf2.format(time));
 					b.setQuantity(c.getQuantity());
-
+					b.setBid(c.getBid());
 					orderList.add(b);
 
 				}

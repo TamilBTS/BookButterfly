@@ -34,7 +34,7 @@ public class AddOldBook extends HttpServlet {
 			String fileName= part.getSubmittedFileName();
 			
 			
-			BookDetails b=new BookDetails(bookName,author,price,bookCatagory,status,fileName,userEmail);
+			BookDetails b=new BookDetails(bookName,author,price,bookCatagory,status,fileName,0,userEmail);
 			
 			//System.out.print(b);
 			

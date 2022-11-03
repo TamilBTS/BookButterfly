@@ -48,6 +48,7 @@
 					<th scope="col">Author</th>
 					<th scope="col">Categories</th>
 					<th scope="col">Price</th>
+					<th scope="col">Stock</th>
 					<th scope="col">Status</th>
 					<th scope="col">Action</th>
 				</tr>
@@ -66,6 +67,7 @@
 					<td><%=b.getAuthor()%></td>
 					<td><%=b.getBookCategory()%></td>
 					<td><%=b.getPrice()%></td>
+					<td><%=b.getStock()%></td>
 					<td><%=b.getStatus()%></td>
 					<%if(b.getBookCategory().equals("Old Book")){ %>
 						

@@ -6,6 +6,13 @@ import java.time.LocalTime;
 public class BookOrders {
 	
 	private int id;
+	private int bid;
+	public int getBid() {
+		return bid;
+	}
+	public void setBid(int bid) {
+		this.bid = bid;
+	}
 	private String orderId;
 	private String username;
 	private String email;

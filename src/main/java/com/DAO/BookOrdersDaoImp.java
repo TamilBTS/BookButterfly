@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class BookOrdersDaoImp implements BookOrdersDao {
 		boolean f=false;
 		
 		try{
-			String sql="insert into orderbooks(order_id,user_name,email,address,phone,bookName,author,price,payment,orderdate,ordertime,quantity) values(?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql="insert into orderbooks(order_id,user_name,email,address,phone,bookName,author,price,payment,orderdate,ordertime,quantity,bid) values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			
 			con.setAutoCommit(false);
 			PreparedStatement pt=con.prepareStatement(sql);
@@ -57,8 +58,11 @@ public class BookOrdersDaoImp implements BookOrdersDao {
 				pt.setString(10, b.getDate());
 				pt.setString(11, b.getTime());
 				pt.setInt(12, b.getQuantity());
+				pt.setInt(13, b.getBid());
 				//pt.setString(12, "Ordered");
 				pt.addBatch();
+				
+				
 				
 			}
 			int[] count=pt.executeBatch();
@@ -120,6 +124,7 @@ public class BookOrdersDaoImp implements BookOrdersDao {
 				b.setTime(rs.getString(12));
 				b.setStatus(rs.getString(13));
 				b.setQuantity(rs.getInt(14));
+				b.setBid(rs.getInt(15));
 				list.add(b);
 			}
 			
@@ -158,6 +163,7 @@ public class BookOrdersDaoImp implements BookOrdersDao {
 				b.setTime(rs.getString(12));
 				b.setStatus(rs.getString(13));
 				b.setQuantity(rs.getInt(14));
+				b.setBid(rs.getInt(15));
 				
 				list.add(b);
 			}
@@ -170,7 +176,7 @@ public class BookOrdersDaoImp implements BookOrdersDao {
 		return list;
 	}
 	
-	public boolean updateStatus(int id){
+	public boolean updateStatus(int id,int bid,int quantity){
 		boolean f=false;
 		
 		String q="update orderbooks set orderstatus=? where id=?";
@@ -179,6 +185,29 @@ public class BookOrdersDaoImp implements BookOrdersDao {
 			pt.setString(1, "Accepted");
 			pt.setInt(2, id);
 			int i=pt.executeUpdate();
+			String s1="select * from book_details where bookId="+bid;
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery(s1);
+			int stock = 0;
+			int newstock=0;
+			System.out.println(quantity);
+			System.out.println(bid);
+			
+			while(rs.next()){
+				 stock=rs.getInt("stock");
+				  newstock=stock-quantity;
+				 System.out.println("stock = "+stock+"new = "+newstock);
+			}
+			String s="update book_details set stock=? where bookId="+bid;
+			
+			PreparedStatement pt1=con.prepareStatement(s);
+			//int newstock=stock-b.getQuantity();
+			pt1.setInt(1, newstock);
+			int j=pt1.executeUpdate();
+			System.out.println("j= "+j);
+			if(i>0){
+				System.out.println("success");
+			}
 			System.out.print(i);
 			if(i>0){
 				f=true;
@@ -191,8 +220,51 @@ public class BookOrdersDaoImp implements BookOrdersDao {
 		return f;
 	}
 	
-	public boolean cancelOrder(int id){
+	public boolean cancelOrder(int id,int bid,int quantity){
 		boolean f=false;
+		
+		String q="update orderbooks set orderstatus=? where id=?";
+		try {
+			System.out.println("hello  "+quantity+"   "+bid);
+			PreparedStatement pt=con.prepareStatement(q);
+			pt.setString(1, "Cancelled");
+			pt.setInt(2, id);
+			int i=pt.executeUpdate();
+			System.out.print(i);
+			
+			String s1="select * from book_details where bookId="+bid;
+			Statement st=con.createStatement();
+			ResultSet rs=st.executeQuery(s1);
+			int stock = 0;
+			int newstock=0;
+			System.out.println(quantity);
+			System.out.println(bid);
+			
+			while(rs.next()){
+				 stock=rs.getInt("stock");
+				  newstock=stock+quantity;
+				 System.out.println("stock = "+stock+"new = "+newstock);
+			}
+			String s="update book_details set stock=? where bookId="+bid;
+			
+			PreparedStatement pt1=con.prepareStatement(s);
+			
+			pt1.setInt(1, newstock);
+			int j=pt1.executeUpdate();
+			System.out.println("j= "+j);
+			if(i>0){
+				f=true;
+				
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return f;
+		
+	}
+public boolean admincancelOrder(int id){
+	boolean f=false;
 		
 		String q="update orderbooks set orderstatus=? where id=?";
 		try {
@@ -210,7 +282,6 @@ public class BookOrdersDaoImp implements BookOrdersDao {
 			e.printStackTrace();
 		}
 		return f;
-		
 	}
 
 	public List<BookOrders> allBooks() {
@@ -240,7 +311,7 @@ public class BookOrdersDaoImp implements BookOrdersDao {
 				b.setTime(rs.getString(12));
 				b.setStatus(rs.getString(13));
 				b.setQuantity(rs.getInt(14));
-				
+				b.setBid(rs.getInt(15));
 				list.add(b);
 			}
 			

@@ -28,8 +28,14 @@ html, body {
 			document.payment.username.focus();
 			return false;
 		}
+		
 		else if(document.payment.cno.value==""){
 			alert("Please Enter Card Number")
+			document.payment.cno.focus();
+			return false;
+		}
+		else if(document.payment.cno.value.length!=16){
+			alert("Please Enter a Valid Card Number")
 			document.payment.cno.focus();
 			return false;
 		}
@@ -38,6 +44,17 @@ html, body {
 			document.payment.cvv.focus();
 			return false;
 		}
+		else if(document.payment.cvv.value.match(/^[0-9]+$/) == null){
+			alert("Please Enter a valid CVV")
+			document.payment.cvv.focus();
+			return false;
+		}
+		else if(document.payment.cvv.value.length!=3){
+			alert("Please Enter a Valid CVV...")
+			document.payment.cvv.focus();
+			return false;
+		}
+		
 		else{
 		alert("An OTP has sent to your Email...Please Check")
 		document.payment.otp.focus();
@@ -97,8 +114,8 @@ html, body {
 							<br>
 							<div class="row">
 								<div class="col">
-									<input type="text" class="form-control" name="cno"
-										placeholder="Card Number" required="required" maxlength="16"  pattern="[0-9]*" inputmode="numeric"
+									<input type="number" class="form-control" name="cno"
+										placeholder="Card Number" required="required" max="16" min="16"  pattern="[0-9]*" inputmode="numeric"
 										id="cno" value="">
 								</div>
 								<div class="col">
