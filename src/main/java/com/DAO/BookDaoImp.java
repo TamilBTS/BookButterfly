@@ -24,7 +24,7 @@ public class BookDaoImp implements BookDao {
 		boolean f = false;
 
 		try {
-			String sql = "insert into book_details(bookName,author,price,bookCatagory,status,photo,userEmail,stock) values(?,?,?,?,?,?,?,?)";
+			String sql = "insert into book_details(bookName,author,price,bookCatagory,status,photo,userEmail,stock,totalsales) values(?,?,?,?,?,?,?,?,?)";
 			PreparedStatement pt = con.prepareStatement(sql);
 			pt.setString(1, b.getBookName());
 			pt.setString(2, b.getAuthor());
@@ -34,6 +34,11 @@ public class BookDaoImp implements BookDao {
 			pt.setString(6, b.getPhotoName());
 			pt.setString(7, b.getUserEmail());
 			pt.setInt(8, b.getStock());
+			pt.setInt(9, 0);
+			
+			/*String sql1="insert into sales (bid,sales) values(?,?)";
+			PreparedStatement pt1=con.prepareStatement(sql1);
+			pt1.setInt(1, );*/
 
 			int i = pt.executeUpdate();
 			if (i == 1) {
@@ -102,6 +107,7 @@ public class BookDaoImp implements BookDao {
 				b.setStatus(rs.getString(6));
 				b.setPhotoName(rs.getString(7));
 				b.setUserEmail(rs.getString(8));
+				b.setStock(rs.getInt(9));
 			}
 
 		} catch (Exception e) {
@@ -115,14 +121,15 @@ public class BookDaoImp implements BookDao {
 		boolean f = false;
 
 		try {
-			String sql = "update book_details set bookName=?,author=?,price=?,status=? where bookId=?";
+			String sql = "update book_details set bookName=?,author=?,price=?,status=?,stock=? where bookId=?";
 			
 			PreparedStatement pt = con.prepareStatement(sql);
 			pt.setString(1, b.getBookName());
 			pt.setString(2, b.getAuthor());
 			pt.setString(3, b.getPrice());
 			pt.setString(4, b.getStatus());
-			pt.setInt(5, b.getBookId());
+			pt.setInt(5, b.getStock());
+			pt.setInt(6, b.getBookId());
 
 			int i = pt.executeUpdate();
 			
@@ -185,7 +192,7 @@ public class BookDaoImp implements BookDao {
 			// pt.setString(1, "Entertainment Book");
 			pt.setString(1, "Active");
 			ResultSet rs = pt.executeQuery();
-			// int i = 1;
+			 int i = 1;
 			while (rs.next()) {
 
 				b = new BookDetails();
@@ -198,9 +205,10 @@ public class BookDaoImp implements BookDao {
 				b.setStatus(rs.getString(6));
 				b.setPhotoName(rs.getString(7));
 				b.setUserEmail(rs.getString(8));
-
+				b.setStock(rs.getInt(9));
 				list.add(b);
-				// i++;
+				 i++;
+				 System.out.println("i="+i);
 
 			}
 

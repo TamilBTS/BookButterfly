@@ -38,10 +38,22 @@
 	<%@include file="navbar.jsp"%>
 	<%
 		response.setHeader("Cache-Control", "no-cache,no-store,must-validate");
+		
 	%>
 
 	<c:if test="${empty userobj }">
 		<c:redirect url="../login.jsp" />
+	</c:if>
+	<c:if test="${not empty emptystock }">
+		<!--  <script type="text/javascript">alert("No Stock..")</script>-->
+		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <center><strong>No Stock</strong> You can't accept this order</center>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+  <c:remove var="emptystock" scope="session" />
+
 	</c:if>
 	<h5 class="text-center">ORDERS</h5>
 

@@ -1,3 +1,5 @@
+
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -28,7 +30,6 @@
 		<p class="text-center text-success">${success}
 			<c:remove var="success" scope="session" />
 		</p>
-
 	</c:if>-->
 	<c:if test="${not empty failure }">
 		<p class="text-center text-danger">${failure}

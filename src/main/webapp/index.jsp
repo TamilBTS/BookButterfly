@@ -1,4 +1,3 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.DAO.BookDaoImp"%>
 <%@page import="com.DB.DBConnect"%>
@@ -120,8 +119,6 @@ html, body {
 					BookDaoImp dao = new BookDaoImp(DBConnect.getConnection());
 					List<BookDetails> list = dao.getNewBooks();
 				%>
-
-
 
 				<%
 					for (BookDetails b : list) {

@@ -24,7 +24,7 @@ public class EditBooks extends HttpServlet {
 		String author=request.getParameter("author");
 		String price=request.getParameter("price");
 		String status=request.getParameter("bstatus");
-		
+		int stock=Integer.parseInt(request.getParameter("stock"));
 		BookDetails b=new BookDetails();
 		
 		b.setBookId(id);
@@ -32,6 +32,7 @@ public class EditBooks extends HttpServlet {
 		b.setAuthor(author);
 		b.setPrice(price);
 		b.setStatus(status);
+		b.setStock(stock);
 		
 		BookDaoImp dao=new BookDaoImp(DBConnect.getConnection());
 		boolean f=dao.updateBooks(b);
