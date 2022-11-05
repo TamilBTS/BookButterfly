@@ -231,7 +231,7 @@ public class BookOrdersDaoImp implements BookOrdersDao {
 			pt.setString(1, "Cancelled");
 			pt.setInt(2, id);
 			int i = pt.executeUpdate();
-			System.out.print(i);
+			
 
 			String s1 = "select * from book_details where bookId=" + bid;
 			Statement st = con.createStatement();

@@ -83,7 +83,7 @@ a:hover {
 			</div>
 			</div>
 			<div class="row p-5">
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<a href="orders.jsp">
 					<div class="card crd-ho">
 						<div class="card-body text-center">
@@ -95,12 +95,34 @@ a:hover {
 				</a>
 
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<a href="CancelOrders.jsp">
 					<div class="card crd-ho">
 						<div class="card-body text-center">
 							<i class="fa-solid fa-rectangle-xmark fa-3x text-danger"></i><br>
 							<h4>Cancelled Orders</h4>
+						</div>
+
+					</div>
+				</a>
+			</div>
+			<div class="col-md-3">
+				<a href="salesReport.jsp">
+					<div class="card crd-ho">
+						<div class="card-body text-center">
+							<i class="fa-solid fa-file-lines fa-3x text-dark"></i><br>
+							<h4>Sales Report</h4>
+						</div>
+
+					</div>
+				</a>
+			</div>
+			<div class="col-md-3">
+				<a href="chart.jsp">
+					<div class="card crd-ho">
+						<div class="card-body text-center">
+							<i class="fa-solid fa-chart-pie fa-3x text-info"></i><br>
+							<h4>Pie Chart</h4>
 						</div>
 
 					</div>

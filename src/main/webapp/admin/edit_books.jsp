@@ -57,7 +57,7 @@
 								<div class="form-group col-md-12">
 									<label for="inputPassword4">Stock</label> <input type="number"
 										name="stock" class="form-control" id="inputPassword4"
-										required="required" value="<%=b.getStock()%>">
+										required="required" value="">
 								</div>
 
 							</div>

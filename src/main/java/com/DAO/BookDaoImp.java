@@ -121,7 +121,7 @@ public class BookDaoImp implements BookDao {
 		boolean f = false;
 
 		try {
-			String sql = "update book_details set bookName=?,author=?,price=?,status=?,stock=? where bookId=?";
+			String sql = "update book_details set bookName=?,author=?,price=?,status=?,stock=stock+? where bookId=?";
 			
 			PreparedStatement pt = con.prepareStatement(sql);
 			pt.setString(1, b.getBookName());
@@ -453,6 +453,39 @@ public class BookDaoImp implements BookDao {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+
+		return list;
+	}
+	
+	public List<BookDetails> salesreport(){
+		List<BookDetails> list = new ArrayList<BookDetails>();
+		BookDetails b = null;
+
+		try {
+			String sql = "select * from book_details order by totalsales desc";
+			PreparedStatement pt = con.prepareStatement(sql);
+
+			ResultSet rs = pt.executeQuery();
+
+			while (rs.next()) {
+
+				b = new BookDetails();
+				b.setBookId(rs.getInt(1));
+				b.setBookName(rs.getString(2));
+				b.setAuthor(rs.getString(3));
+				b.setPrice(rs.getString(4));
+				b.setBookCategory(rs.getString(5));
+				b.setStatus(rs.getString(6));
+				b.setPhotoName(rs.getString(7));
+				b.setUserEmail(rs.getString(8));
+				b.setStock(rs.getInt(9));
+				b.setTotalsales(rs.getInt(10));
+				list.add(b);
+			}
+
+		} catch (Exception e) {
+
 		}
 
 		return list;

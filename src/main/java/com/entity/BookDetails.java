@@ -12,6 +12,13 @@ public class BookDetails {
 	private String photoName;
 	private String userEmail;
 	private int stock;
+	private int totalsales;
+	public int getTotalsales() {
+		return totalsales;
+	}
+	public void setTotalsales(int totalsales) {
+		this.totalsales = totalsales;
+	}
 	public int getStock() {
 		return stock;
 	}
