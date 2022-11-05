@@ -35,6 +35,12 @@ public class Login extends HttpServlet {
 				session.setAttribute("userobj", us);
 				response.sendRedirect("admin/home.jsp");
 			}
+			else if("seller@gmail.com".equals(email)&&"1234".equals(pass)){
+				User us=new User();
+				us.setName("seller");
+				session.setAttribute("userobj", us);
+				response.sendRedirect("admin/seller.jsp");
+			}
 			else{
 				
 				User us=dao.login(email, pass);

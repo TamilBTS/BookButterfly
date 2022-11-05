@@ -25,4 +25,6 @@ public interface BookOrdersDao {
 	public List<BookOrders> allBooks();
 	
 	public List<BookOrders> cancelOrders();
+	
+	public boolean deliveryStatus(int id);
 }

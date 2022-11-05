@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@page import="com.DAO.BookDaoImp"%>
+<%@page import="com.DAO.BookOrdersDaoImp"%>
 <%@page import="com.DB.DBConnect"%>
-<%@page import="com.entity.BookDetails"%>
+<%@page import="com.entity.*"%>
 <%@page import="java.util.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -39,27 +39,21 @@ a:hover {
 		<table class="table table-striped table-hover">
 			<thead class="thead-dark">
 				<tr>
-					<th scope="col">Image</th>
+					<th scope="col">Date</th>
 					
-					<th scope="col">Book Name</th>
-					<th scope="col">Author</th>
-					<th scope="col">Categories</th>
-					<th scope="col">TotalSales</th>
+					<th scope="col">Sales Per day</th>
+					
 					
 				</tr>
-				<%	BookDaoImp dao=new BookDaoImp(DBConnect.getConnection());
+				<%	BookOrdersDaoImp dao=new BookOrdersDaoImp(DBConnect.getConnection());
 				
-					List<BookDetails> list=dao.salesreport();
+					List<BookOrders> list=dao.chartreport();
 					
-					for(BookDetails b:list){
+					for(BookOrders b:list){
 					%>
 					<tr>
-					<td><img src="../books/<%=b.getPhotoName()%>"
-						style="height: 50px;"></td>
-					<td><%=b.getBookName() %></td>
-					<td><%=b.getAuthor() %></td>
-					<td><%=b.getBookCategory() %></td>
-					<td><%=b.getTotalsales() %></td>
+					<td><%=b.getDate() %></td>
+					<td><%=b.getQuantity() %></td>
 					</tr>
 					<%} %>
 			</thead>

@@ -8,7 +8,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>User:My Orders</title>
@@ -30,14 +30,17 @@ html, body {
 	<c:if test="${empty userobj }">
 		<c:redirect url="login.jsp" />
 	</c:if>
-	<div class="container-fluid" style="width: 95%">
+	<div class="container-fluid" style="width: 100%">
 
 		<div class="row p-5">
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-body">
 						<h4 class="text-center">MY ORDERS</h4>
-						<center><h6 class="text-center text-info">Accepted Orders will be delivered within a week...If not Contact our service center</h6></center>
+						<center>
+							<h6 class="text-center text-info">Accepted Orders will be
+								delivered within a week...If not Contact our service center</h6>
+						</center>
 						<table class="table table-striped">
 							<thead>
 								<tr>
@@ -70,7 +73,7 @@ html, body {
 									<td><%=b.getUsername()%></td>
 									<td><%=b.getBookName()%></td>
 									<td><%=b.getAuthor()%></td>
-									<td><%=b.getQuantity() %></td>
+									<td><%=b.getQuantity()%></td>
 									<td><%=b.getPrice()%></td>
 									<td><%=b.getPaymentType()%></td>
 									<%
@@ -82,6 +85,10 @@ html, body {
 									%>
 									<td class="text-danger"><b><%=b.getStatus()%></b></td>
 									<%
+										} else if ("Delivered".equals(b.getStatus())) {
+									%>
+									<td class="text-dark"><b><%=b.getStatus()%></b></td>
+									<%
 										} else {
 									%>
 									<td class="text-info"><b>Ordered</b></td>
@@ -90,13 +97,12 @@ html, body {
 									%>
 									<td>
 										<%
-											if ("Cancelled".equals(b.getStatus())) {
-										%> 
-										<a role="link" class="btn btn-sm btn-secondary"><i
+											if ("Cancelled".equals(b.getStatus()) || "Delivered".equals(b.getStatus())) {
+										%> <a role="link" class="btn btn-sm btn-secondary"><i
 											class="fa-solid fa-xmark" aria-disabled="true"></i></a> <%
- 											} else {
- 										%> 
- 										<a href="UserOrderCancel?oid=<%=b.getId()%>&&bid=<%=b.getBid() %>&&q=<%=b.getQuantity() %>&&status=<%=b.getStatus() %>"
+ 	} else {
+ %> <a
+										href="UserOrderCancel?oid=<%=b.getId()%>&&bid=<%=b.getBid()%>&&q=<%=b.getQuantity()%>&&status=<%=b.getStatus()%>"
 										class="btn btn-sm btn-danger"><i class="fa-solid fa-xmark"></i></a>
 										<%
 											}

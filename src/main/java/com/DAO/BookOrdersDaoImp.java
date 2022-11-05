@@ -5,9 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import com.entity.BookDetails;
 import com.entity.BookOrders;
 
 public class BookOrdersDaoImp implements BookOrdersDao {
@@ -358,6 +363,97 @@ public class BookOrdersDaoImp implements BookOrdersDao {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+
+		return list;
+	}
+	public List<BookOrders> acceptedOrders() {
+		List<BookOrders> list = new ArrayList<BookOrders>();
+		BookOrders b = null;
+
+		try {
+
+			String sql = "select * from orderbooks where orderstatus='Accepted' order by id desc";
+			PreparedStatement pt = con.prepareStatement(sql);
+
+			ResultSet rs = pt.executeQuery();
+
+			while (rs.next()) {
+				b = new BookOrders();
+				b.setId(rs.getInt(1));
+				b.setOrderId(rs.getString(2));
+				b.setUsername(rs.getString(3));
+				b.setEmail(rs.getString(4));
+				b.setFullAddress(rs.getString(5));
+				b.setPhno(rs.getString(6));
+				b.setBookName(rs.getString(7));
+				b.setAuthor(rs.getString(8));
+				b.setPrice(rs.getDouble(9));
+				b.setPaymentType(rs.getString(10));
+				b.setDate(rs.getString(11));
+				b.setTime(rs.getString(12));
+				b.setStatus(rs.getString(13));
+				b.setQuantity(rs.getInt(14));
+
+				list.add(b);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	public boolean deliveryStatus(int id) {
+		boolean f = false;
+
+		String q = "update orderbooks set orderstatus=? where id=?";
+		try {
+			PreparedStatement pt = con.prepareStatement(q);
+			pt.setString(1, "Delivered");
+			pt.setInt(2, id);
+			int i = pt.executeUpdate();
+			System.out.print(i);
+			if (i > 0) {
+				f = true;
+
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		return f;
+	}
+	public List<BookOrders> chartreport(){
+		List<BookOrders> list = new ArrayList<BookOrders>();
+		BookOrders b = null;
+
+		try {
+			DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			LocalDate date=LocalDate.now();
+			String dates=date.toString();
+			String sql = "select orderdate,sum(quantity) from orderbooks where orderdate between DATE_SUB(?, INTERVAL 7 DAY) and ? group by orderdate order by orderdate"; 
+
+			PreparedStatement pt = con.prepareStatement(sql);
+			pt.setString(1, dates);
+			pt.setString(2, dates);
+			ResultSet rs = pt.executeQuery();
+
+			while (rs.next()) {
+				b = new BookOrders();
+				System.out.println(rs.getString(1)+" "+rs.getInt(2));
+				b.setDate(rs.getString(1));
+			
+				b.setQuantity(rs.getInt(2));
+				
+
+				list.add(b);
+				
+			}
+
+		} catch (Exception e) {
+				e.printStackTrace();
 		}
 
 		return list;

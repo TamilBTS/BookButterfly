@@ -154,6 +154,12 @@
   	<description></description>
   	<servlet-class>com.user.servlet.EmailChangePass</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>DeliveryStatus</servlet-name>
+  	<display-name>DeliveryStatus</display-name>
+  	<description></description>
+  	<servlet-class>com.admin.servlet.DeliveryStatus</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>RegisterServlet</servlet-name>
   	<url-pattern>/RegisterServlet</url-pattern>
@@ -253,5 +259,9 @@
   <servlet-mapping>
   	<servlet-name>EmailChangePass</servlet-name>
   	<url-pattern>/EmailChangePass</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DeliveryStatus</servlet-name>
+  	<url-pattern>/DeliveryStatus</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -32,4 +32,6 @@ public interface BookDao {
 	
 	public List<BookDetails> getBooksBySearch(String ch);
 	
+	public List<BookDetails> salesreport();
+	
 }
